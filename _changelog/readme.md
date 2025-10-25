@@ -22,5 +22,18 @@ Coach = Admin
 planning voor morgen:
     - migrations, layout, nav bar en login/register
 
-Woensdag 22/10/2025
- - 
+## Woensdag 22/10/2025
+ - Migrations gemaakt
+ - login/register van breeze werkte niet, hierdoor alweer een nieuw project aangemaakt. Hij deed het toen nog steeds niet maar dit kwam uiteindelijk omdat ik https niet aan had gezet in herd. Nu kan ik dus eindelijk aan de slag.
+
+## Donderdag 23/10/2025
+ - Login/register home pagina gemaakt
+ - Nav bar layout gemaakt
+ - Nav-link components gemaakt
+ - views/routes aangemaakt voor een aantal benodigde pagina's
+
+## Zaterdag 25/10/2025
+- check in opsturen gemaakt
+- check in geschiedenis gemaakt met detailpagina - dit wordt ook weer belangrijk als de admin kant komt. 
+- Routes goed gezet door te verwijzen naar een controller.
+- Authenticatie toegvoegd aan pagina's en het inzien van checkins.
