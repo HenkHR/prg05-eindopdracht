@@ -1,7 +1,12 @@
 <x-app-layout>
     <div>
         <div>
+            @if(!auth()->user()->is_admin)
             <a href="{{ route('feedback') }}">Back to Check-in History</a>
+            @endif
+            @if(auth()->user()->is_admin)
+            <a href="{{ route('clients.show', $checkIn->user) }}">Back to Client</a>
+            @endif
         </div>
         
         <h1>Check-in from {{ $checkIn->created_at->format('l, F j, Y') }}</h1>

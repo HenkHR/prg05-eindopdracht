@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckInController;
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,6 +22,9 @@ Route::post('/checkin', [CheckInController::class, 'store'])->name('checkin.stor
 Route::get('/checkin/{checkIn}', [CheckInController::class, 'show'])->name('checkin.show')->middleware(['auth']);
 
 Route::get('/feedback', [CheckInController::class, 'index'])->name('feedback')->middleware(['auth']);
+
+Route::get('/clients', [ClientController::class, 'index'])->name('clients')->middleware(['admin']);
+Route::get('/clients/{user}', [ClientController::class, 'show'])->name('clients.show')->middleware(['admin']);
 
 Route::get('/profile', function () {
     return view('profile');

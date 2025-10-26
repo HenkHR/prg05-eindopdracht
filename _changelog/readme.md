@@ -37,3 +37,9 @@ planning voor morgen:
 - check in geschiedenis gemaakt met detailpagina - dit wordt ook weer belangrijk als de admin kant komt. 
 - Routes goed gezet door te verwijzen naar een controller.
 - Authenticatie toegvoegd aan pagina's en het inzien van checkins.
+
+## Zondag 26/10/2025
+ - Admin authenticatie
+ - Admin login
+ - Admin klanten ovezicht + zoek functionaliteit
+ - Admin kan klanten details + checkins inzien

@@ -57,7 +57,7 @@ public function index()
 
 public function show(CheckIn $checkIn)
 {
-    if ($checkIn->user_id !== Auth::id()) {
+    if ($checkIn->user_id !== Auth::id() && !Auth::user()->is_admin) {
         abort(403);
     }
     

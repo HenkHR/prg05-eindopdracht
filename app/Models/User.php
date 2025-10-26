@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function checkIns()
+    {
+        return $this->hasMany(CheckIn::class);
+    }
 }
