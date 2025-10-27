@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Carbon\Carbon;
 
 class ClientController extends Controller
 {
@@ -18,11 +19,36 @@ class ClientController extends Controller
                   ->orWhere('email', 'like', "%$search%");
             });
         }
+        if ($request->has('filter') && $request->filter) {
+            $today = Carbon::today();
+            
+            switch ($request->filter) {
+                case 'checked_in_today':
+                    $query->whereHas('checkIns', function($q) use ($today) {
+                        $q->whereDate('created_at', $today);
+                    });
+                    break;
+                    
+                case 'not_checked_in_today':
+                    $query->whereDoesntHave('checkIns', function($q) use ($today) {
+                        $q->whereDate('created_at', $today);
+                    });
+                    break;
+                    
+                case 'checked_in_this_week':
+                    $weekStart = Carbon::now()->startOfWeek();
+                    $query->whereHas('checkIns', function($q) use ($weekStart) {
+                        $q->where('created_at', '>=', $weekStart);
+                    });
+                    break;
+            }
+        }
 
         $clients = $query->get();
         $searchTerm = $request->search;
+        $selectedFilter = $request->filter;
 
-        return view('clients', compact('clients', 'searchTerm'));
+        return view('clients', compact('clients', 'searchTerm', 'selectedFilter'));
     }
 
     public function show(User $user)

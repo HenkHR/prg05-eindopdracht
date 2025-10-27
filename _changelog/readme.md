@@ -43,3 +43,8 @@ planning voor morgen:
  - Admin login
  - Admin klanten ovezicht + zoek functionaliteit
  - Admin kan klanten details + checkins inzien
+
+## Maandag 27/10/2025
+ - Filter optie af
+ - authorizatie voor admin-side verbeterd
+ 
