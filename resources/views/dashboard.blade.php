@@ -55,7 +55,7 @@
                     <div class="flex flex-row gap-2">   
 					    <div class="flex flex-row gap-2 w-full">
 						    <label for="content">Message</label>
-						    <textarea id="content" name="content" required class="text-black w-full resize-none h-10 rounded-md">{{ old('content') }}</textarea>
+						    <textarea id="content" name="content" class="text-black w-full resize-none h-10 rounded-md">{{ old('content') }}</textarea>
 						    @error('content')
 							<span>{{ $message }}</span>
 						    @enderror
