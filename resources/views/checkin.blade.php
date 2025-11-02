@@ -1,7 +1,9 @@
 <x-app-layout>
     <div>
         <h1>Daily Check-in</h1>
-        
+    @if(\App\Models\CheckIn::where('user_id', auth()->id())->whereDate('created_at', today())->exists())
+        <p>You have already checked in today.</p>
+    @else
         <form method="POST" action="{{ route('checkin.store') }}" enctype="multipart/form-data">
             @csrf
 
@@ -61,7 +63,8 @@
                 @enderror
             </div>
 
-            <button type="submit">Submit Check-in</button>
+            <button type="submit" class="bg-gray-700 hover:bg-gray-600 rounded-sm">Submit Check-in</button>
         </form>
+        @endif
     </div>
 </x-app-layout>

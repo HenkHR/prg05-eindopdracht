@@ -48,3 +48,19 @@ planning voor morgen:
  - Filter optie af
  - authorizatie voor admin-side verbeterd
  
+## Dinsdag 28/10/2025
+ - Styling verbeterd voor leesbaarheid
+ - component gemaakt voor terug knop
+
+## Donderdag 30/10/2025
+ - Community posts gemaakt
+ - admins kunnen posten, posts zichbaar/onzichtbaar maken
+ - admins kunnen posts bewerken
+
+## Zaterdag 1/11/2025
+ - Admin commenting gemaakt, admins kunnen nu berichten achterlaten op de checkin van een gebruiker
+
+
+## Zondag 2/11/2025
+ - Diepere validatie, na x aantal checkins krijg je een samenvatting. 
+ - samenvatting krijg je alleen als je de vorige week 2 of meer checkins hebt gedaan, knop werkt niet als je nog geen samenvatting hebt. 

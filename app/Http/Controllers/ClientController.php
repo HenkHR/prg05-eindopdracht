@@ -21,29 +21,35 @@ class ClientController extends Controller
         }
         if ($request->has('filter') && $request->filter) {
             $today = Carbon::today();
-            
+
             switch ($request->filter) {
                 case 'checked_in_today':
                     $query->whereHas('checkIns', function($q) use ($today) {
                         $q->whereDate('created_at', $today);
                     });
                     break;
-                    
+
                 case 'not_checked_in_today':
                     $query->whereDoesntHave('checkIns', function($q) use ($today) {
                         $q->whereDate('created_at', $today);
                     });
                     break;
-                    
+
                 case 'checked_in_this_week':
                     $weekStart = Carbon::now()->startOfWeek();
                     $query->whereHas('checkIns', function($q) use ($weekStart) {
                         $q->where('created_at', '>=', $weekStart);
                     });
                     break;
+
+                case 'has_img_today':
+                    $today = Carbon::today();
+                    $query->whereHas('checkIns', function ($q) use ($today){
+                       $q->whereDate('created_at', $today)->whereNotNull('image_path');
+                    });
+                    break;
             }
         }
-
         $clients = $query->get();
         $searchTerm = $request->search;
         $selectedFilter = $request->filter;
@@ -53,6 +59,9 @@ class ClientController extends Controller
 
     public function show(User $user)
     {
+        if(!Auth::user()->is_admin) {
+            abort(403, 'Unauthorized');
+        }
         $user->load('checkIns');
         return view('clients.show', compact('user'));
 
@@ -60,7 +69,14 @@ class ClientController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $user->update($request->all());
+        if(!Auth::user()->is_admin) {
+            abort(403, 'Unauthorized');
+        }
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+        ]);
+        $user->update($validated);
         return redirect()->route('clients.show', $user);
     }
 }

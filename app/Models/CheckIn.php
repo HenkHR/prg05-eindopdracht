@@ -17,7 +17,9 @@ class CheckIn extends Model
         'soreness',
         'food_quality',
         'comment',
-        'image_path'
+        'image_path',
+        'coach_comment'
+
     ];
 
     public function user()
